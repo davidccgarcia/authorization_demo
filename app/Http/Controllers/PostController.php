@@ -25,7 +25,7 @@ class PostController extends Controller
         $user = Auth::loginUsingId(1);
         $post = Post::findOrFail($id);
 
-        if (Gate::denies('update_post', $post)) {
+        if (Gate::denies('update', $post)) {
             abort(404);
         }
 

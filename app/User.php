@@ -41,4 +41,14 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(Post::class);
     }
+
+    public function isAuthor($post)
+    {
+        return $this->id == $post->user_id;
+    }
+
+    public function isAdmin()
+    {
+        return ($this->role == 'admin') ? true : false;
+    }
 }
