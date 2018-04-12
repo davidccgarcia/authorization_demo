@@ -15,14 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('edit-post/{id}', function ($id) {
-    $user = Auth::loginUsingId(1);
-
-    $post = App\Post::findOrFail($id);
-
-    if (Gate::denies('update_post', $post)) {
-        abort(403);
-    }
-
-    return $post->title;
-});
+Route::get('posts', 'PostController@index');
+Route::get('posts/edit/{id}', 'PostController@edit');
